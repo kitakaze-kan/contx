@@ -9,7 +9,18 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@ceramicnetwork/blockchain-utils-linking": "^2.0.6",
+    "@ceramicnetwork/http-client": "^2.2.1",
+    "@datamodels/identity-accounts-crypto": "^0.2.0",
+    "@datamodels/identity-profile-basic": "^0.2.0",
+    "@glazed/types": "^0.2.0",
+    "@self.id/framework": "^0.3.2",
+    "@self.id/multiauth": "^0.2.2",
+    "@self.id/ui": "^0.2.0",
     "daisyui": "^2.17.0",
+    "dids": "^3.2.0",
+    "key-did-provider-ed25519": "^2.0.0",
+    "key-did-resolver": "^2.0.4",
     "next": "12.1.6",
     "react": "18.2.0",
     "react-daisyui": "^2.0.4",
