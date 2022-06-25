@@ -5,6 +5,11 @@ module.exports = {
     "./src/components/**/*.{js,ts,jsx,tsx}",
     "./src/constants/**/*.{js,ts}",
   ],
+  safelist: [
+    {
+      pattern: /./
+    },
+  ],
   theme: {
     extend: {
       colors: {
