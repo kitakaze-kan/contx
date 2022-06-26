@@ -3,7 +3,7 @@ import { WorkCredentialItem } from "@/interfaces";
 import { getExploreLink, shortenStr, shortHash } from "@/utils/tools";
 import Image from "next/image";
 import { FC, useMemo } from "react";
-import { Card,Button } from "react-daisyui";
+import { Card } from "react-daisyui";
 
 type WorkCredentialCardProps = {
     wc: WorkCredentialItem
