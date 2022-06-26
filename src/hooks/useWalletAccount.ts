@@ -50,7 +50,7 @@ export const useWalletAccount = () => {
           (window as any).ethereum.networkVersion !== chainId
         ) {
           try {
-            await switchNetwork(1);
+            await switchNetwork(4);
             await activate(injected, async (error) => {
               contxError("Error: Something wrong for connecting wallet...");
             });
@@ -79,7 +79,7 @@ export const useWalletAccount = () => {
           (window as any).ethereum.networkVersion !== chainId
         ) {
           try {
-            await switchNetwork(1);
+            await switchNetwork(4);
             await activate(WalletConnect, async (error) => {
               contxError("Error: Something wrong for connecting wallet...");
             });

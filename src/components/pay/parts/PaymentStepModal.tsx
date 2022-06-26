@@ -16,13 +16,13 @@ export const PaymentStepModal: FC = () => {
             case PaymentStatusType.Idling:
                 return "Now preparing..."
             case PaymentStatusType.SavingDeliverables:
-                return "Saving Deliverables..."
+                return "Saving deliverables..."
             case PaymentStatusType.executingTransaction:
-                return "Executing Payment Transaciton..."
+                return "Executing payment transaciton..."
             case PaymentStatusType.issuingWorkCredential:
-                return "Issuing Work Credential..."
+                return "Issuing work credential..."
             case PaymentStatusType.issuedWorkCredential:
-                return "Issuing Work Credential..."
+                return "The new work credential got issued!"
             case PaymentStatusType.failed:
                 return "something went wrong...:("
             default:
@@ -33,7 +33,7 @@ export const PaymentStepModal: FC = () => {
     return (
         <>
             <Modal open={isShow}>
-                <Modal.Header>Payment In Progress</Modal.Header>
+                <Modal.Header>{paymentStatus === PaymentStatusType.issuedWorkCredential ? "Congrats!" :  "Payment In Progress"}</Modal.Header>
 
                 <Modal.Body>
                     {statusDescription}

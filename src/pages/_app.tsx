@@ -9,6 +9,11 @@ import { aliases as workCredentialAliases } from "@/__generated__/aliases";
 import { BaseLayout } from '@/components/layout/BaseLayout';
 import { CERAMIC_NETWORK, CERAMIC_URL } from "@/constants/common";
 import { ModelTypes } from '@/interfaces/workcredential';
+import { createClient, Provider as UrqlProvider } from 'urql';
+
+const client = createClient({
+  url: "https://api.studio.thegraph.com/query/21459/contx/v0.0.1",
+});
 
 const aliases: ModelTypesToAliases<ModelTypes> = workCredentialAliases;
 
@@ -23,20 +28,22 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <Provider>
-        <Web3ReactProvider getLibrary={getLibrary}>
-          <SelfIDProvider
-              client={{
-                ceramic: CERAMIC_URL,
-                connectNetwork: CERAMIC_NETWORK,
-                aliases,
-              }}
-              state={state}
-            >
-            <BaseLayout>
-              <Component {...pageProps} />
-            </BaseLayout>
-          </SelfIDProvider>
-        </Web3ReactProvider>
+        <UrqlProvider value={client}>
+          <Web3ReactProvider getLibrary={getLibrary}>
+            <SelfIDProvider
+                client={{
+                  ceramic: CERAMIC_URL,
+                  connectNetwork: CERAMIC_NETWORK,
+                  aliases,
+                }}
+                state={state}
+              >
+              <BaseLayout>
+                <Component {...pageProps} />
+              </BaseLayout>
+            </SelfIDProvider>
+          </Web3ReactProvider>
+          </UrqlProvider>
       </Provider>
     </>
   )

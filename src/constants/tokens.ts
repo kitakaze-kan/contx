@@ -9,54 +9,54 @@ export type TokenType = {
 };
 export const tokenList: TokenType[] = [
   {
-    label: "ETH (Ethereum)",
+    label: "ETH (Rinkeby)",
     value: "ETH",
     decimal: 18,
     networkId: "4",
     address: "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE",
   },
   {
-    label: "USDC (Ethereum)",
+    label: "USDC (Rinkeby)",
     value: "USDC",
     decimal: 6,
-    networkId: "1",
-    address: "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+    networkId: "4",
+    address: "0xeb8f08a975Ab53E34D8a0330E0D34de942C95926",
   },
-  {
-    label: "USDC (Test)",
-    value: "USDC-TEST",
-    decimal: 6,
-    networkId: "31337",
-    address: "0xC9a43158891282A2B1475592D5719c001986Aaec",
-  },
-  {
-    label: "ETH (Local)",
-    value: "ETH-LOCAL",
-    decimal: 18,
-    networkId: "31337",
-    address: "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE",
-  },
-  {
-    label: "DAI (Test)",
-    value: "DAI-TEST",
-    decimal: 6,
-    networkId: "31337",
-    address: "0x46b142DD1E924FAb83eCc3c08e4D46E82f005e0E",
-  },
-  {
-    label: "MATIC",
-    value: "MATIC",
-    decimal: 18,
-    networkId: "137",
-    address: "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE",
-  },
-  {
-    label: "USDC (Polygon)",
-    value: "USDC",
-    decimal: 6,
-    networkId: "137",
-    address: "0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174",
-  },
+  // {
+  //   label: "USDC (Test)",
+  //   value: "USDC-TEST",
+  //   decimal: 6,
+  //   networkId: "31337",
+  //   address: "0xC9a43158891282A2B1475592D5719c001986Aaec",
+  // },
+  // {
+  //   label: "ETH (Local)",
+  //   value: "ETH-LOCAL",
+  //   decimal: 18,
+  //   networkId: "31337",
+  //   address: "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE",
+  // },
+  // {
+  //   label: "DAI (Test)",
+  //   value: "DAI-TEST",
+  //   decimal: 6,
+  //   networkId: "31337",
+  //   address: "0x46b142DD1E924FAb83eCc3c08e4D46E82f005e0E",
+  // },
+  // {
+  //   label: "MATIC",
+  //   value: "MATIC",
+  //   decimal: 18,
+  //   networkId: "137",
+  //   address: "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE",
+  // },
+  // {
+  //   label: "USDC (Polygon)",
+  //   value: "USDC",
+  //   decimal: 6,
+  //   networkId: "137",
+  //   address: "0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174",
+  // },
 ];
 
 export const isETH = (token: string) =>

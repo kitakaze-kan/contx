@@ -4,7 +4,7 @@ import { DisplayAvatar } from "./DisplayAvatar";
 import Router from "next/router";
 import { IconAvatar } from "./IconAvatar";
 import { useMyCeramicAcount } from "@/hooks/useCeramicAcount";
-import { useShowConnectWalletModal } from "@/jotai/ui";
+import { useSetConnectWalletModal } from "@/jotai/ui";
 import { Button } from "react-daisyui";
 
 type MenuButtonProps = {
@@ -31,7 +31,7 @@ export default function AccountButton() {
     name,
     avator,
   } = useMyCeramicAcount();
-  const [_, setShow] = useShowConnectWalletModal()
+  const setShow = useSetConnectWalletModal()
 
   const goToMypage = () => {
     Router.push(`/dashboard`);

@@ -8,7 +8,6 @@ export const PayContainer:FC = () => {
 
     const execPay = (data:WorkCredentialForm) => {
         execPayment(data)
-
     }
 
     return (

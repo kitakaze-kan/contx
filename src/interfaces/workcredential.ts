@@ -93,3 +93,10 @@ export type ModelTypes = ModelTypeAliases<
     workCredentials: "WorkCredentials";
   }
 >;
+
+export type Payment = {
+  id: string;
+  txHash: string;
+  payer: string;
+  payee: string;
+};

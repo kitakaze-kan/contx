@@ -62,19 +62,8 @@ export const usePayment = () => {
       return;
     }
 
-    const selfID = mySelfID ?? (await connectCeramic());
-    if (selfID == null || selfID.did == null) {
-      contxError();
-      return false;
-    }
-    if (!wcsRecord.isLoadable) {
-      console.log("wcsRecord.isLoadable", wcsRecord.isLoadable);
-      contxError();
-      return false;
-    }
-
     // check network
-    const targetId = getToken(data.tokenSymbol)?.networkId || "1";
+    const targetId = getToken(data.tokenSymbol)?.networkId || "4";
     if (!(contracts && isSupportedNetwork(chainId))) {
       await switchNetwork(Number(targetId)).catch((error) => {
         console.log("error", error);
@@ -91,11 +80,25 @@ export const usePayment = () => {
         return false;
       });
     }
+
     //=== validation ===
 
     // show progress modal
     setShow(true);
     setPaymentStatus(PaymentStatusType.SavingDeliverables);
+
+    const selfID = mySelfID ?? (await connectCeramic());
+    if (selfID == null || selfID.did == null) {
+      contxError();
+      setPaymentStatus(PaymentStatusType.failed);
+      return false;
+    }
+    if (!wcsRecord.isLoadable) {
+      console.log("wcsRecord.isLoadable", wcsRecord.isLoadable);
+      contxError();
+      setPaymentStatus(PaymentStatusType.failed);
+      return false;
+    }
 
     try {
       //store data to ceramic
@@ -191,9 +194,15 @@ export const usePayment = () => {
               // make sig and update workcredentials
               setPaymentStatus(PaymentStatusType.issuingWorkCredential);
               const wcWithSig = await createSig(event.transactionHash, wc);
-              await selfID.client.tileLoader.update(docUrl, {
+
+              console.log({ wcWithSig });
+
+              const res = await selfID.client.tileLoader.update(docUrl, {
                 ...wcWithSig,
               });
+
+              console.log({ res });
+
               await wcsRecord.set({
                 WorkCredentials: [
                   ...wcs,
@@ -201,28 +210,24 @@ export const usePayment = () => {
                     id: docUrl,
                     summary: wc.summary,
                     isPayer: wc.isPayer,
-                    txHash: wc.txHash,
+                    txHash: wcWithSig.txHash,
                     deliverables: wc.deliverables,
-                    fiatValue: wc.fiatValue,
                     isVerified: true,
                     issuedTimestamp: wc.issuedTimestamp,
                   },
                 ],
               });
-              setShow(false);
               setPaymentStatus(PaymentStatusType.issuedWorkCredential);
             }
           }
         }
       } else {
         console.log("workcredential generation failed...");
-        setShow(false);
         setPaymentStatus(PaymentStatusType.finishedWithoutWorkCredential);
       }
     } catch (error) {
       console.log("error", error);
       console.log("workcredential generation failed...");
-      setShow(false);
       setPaymentStatus(PaymentStatusType.Idling);
     }
   };
