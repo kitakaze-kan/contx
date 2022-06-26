@@ -85,7 +85,6 @@ export const useMyCeramicAcount = () => {
   }, [account]);
 
   const connectCeramic = async (): Promise<SelfID<ModelTypes> | null> => {
-    console.log("connectCeramic");
     if (!(library && account)) return null;
 
     await connectWallet();

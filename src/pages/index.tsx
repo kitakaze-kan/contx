@@ -9,7 +9,7 @@ const Home: NextPage = () => {
   return (
     <main className="text-white text-center h-screen overflow-hidden flex justify-center ">
             <div className="w-full text-center pt-20">
-            <div className="relative text-center mx-auto max-w-3xl h-80">
+            <div className="relative text-center mx-auto max-w-3xl h-32 sm:h-80">
                     <Image
                         src="/banner.png"
                         alt="contx"
