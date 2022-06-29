@@ -2,7 +2,7 @@ import { useGraph } from "@/hooks/useGraph";
 import { FC } from "react";
 import { Table } from "react-daisyui";
 import { CommonSpinner } from "../common/CommonSpinner";
-import { PaidListItem } from "./PaidListItem";
+import { ReceivedListItem } from "./ReceivedListItem";
 
 export const ReceivedList: FC = () => {
 
@@ -29,7 +29,7 @@ export const ReceivedList: FC = () => {
                 <Table.Body>
                 {payeeList.data && payeeList.data.payments.map((item) => {
                         return (
-                            <PaidListItem key={item.id} item={item} />
+                            <ReceivedListItem key={item.id} item={item} />
                         )
                     })}
                 </Table.Body>

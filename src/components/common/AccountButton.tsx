@@ -26,6 +26,7 @@ export default function AccountButton() {
   const {
     connection,
     disconnectCeramic,
+    connectCeramic,
     account,
     did,
     name,
@@ -36,7 +37,11 @@ export default function AccountButton() {
   const goToMypage = () => {
     Router.push(`/dashboard`);
   };
-  const goToWCs = (did:string) => {
+  const goToWCs = async (did:string) => {
+    if(!did) {
+      await connectCeramic()
+      return
+    }
     Router.push(`/${did}`);
   };
 
