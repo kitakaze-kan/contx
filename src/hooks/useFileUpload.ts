@@ -1,11 +1,19 @@
-import { useStateUploadedCID, useStateUploadStatus } from "@/jotai";
+import {
+  useStateUploadedCID,
+  useStateUploadedFullPath,
+  useStateUploadStatus,
+} from "@/jotai";
+
+const DWEB_LINK = ".ipfs.dweb.link/";
 
 export const useFileUpload = () => {
   const [status, setStatus] = useStateUploadStatus();
   const [cid, setCID] = useStateUploadedCID();
+  const [fullPath, setFullPath] = useStateUploadedFullPath();
 
   const upload = async (files: File[]) => {
     setStatus("uploading");
+    const fileName = files[0].name;
     const formData = new FormData();
     files.forEach((file) => {
       formData.append("file", file);
@@ -23,6 +31,7 @@ export const useFileUpload = () => {
       console.log("cid", data.cid);
       if (data.cid) {
         setCID(data.cid);
+        setFullPath(`https://${data.cid}${DWEB_LINK}${fileName}`);
         setStatus("completed");
       } else {
         setStatus("failed");
@@ -42,6 +51,7 @@ export const useFileUpload = () => {
     upload,
     status,
     cid,
+    fullPath,
     resetUploadStatus,
   };
 };

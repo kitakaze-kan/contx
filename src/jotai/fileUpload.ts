@@ -8,3 +8,7 @@ export const useStateUploadStatus = () => useAtom(uploadStatus);
 export const uploadedCID = atom<string | undefined>(undefined);
 
 export const useStateUploadedCID = () => useAtom(uploadedCID);
+
+export const uploadedFullPath = atom<string | undefined>(undefined);
+
+export const useStateUploadedFullPath = () => useAtom(uploadedFullPath);

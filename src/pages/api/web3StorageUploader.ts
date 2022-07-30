@@ -1,6 +1,7 @@
 import { IncomingForm } from "formidable";
 import { Web3Storage, getFilesFromPath } from "web3.storage";
 import type { NextApiRequest, NextApiResponse } from "next";
+import { rename } from "fs";
 
 export const config = {
   api: {
@@ -25,6 +26,12 @@ export default async function web3StorageUpload(
       (resolve, reject) => {
         const form = new IncomingForm({
           multiples: false,
+          filename: (name, _, part, form) => {
+            const { originalFilename, mimetype } = part;
+            if (originalFilename) return originalFilename;
+            const ex = mimetype?.includes("png") ? "png" : "jpg";
+            return `${name}.${ex}`;
+          },
         });
         form.parse(req, (err, fields, files) => {
           if (err) {
@@ -41,8 +48,9 @@ export default async function web3StorageUpload(
       respondError(req, res, "No File Data");
       return;
     }
+    const fileName = data?.files.file.originalFilename;
     const files = await getFilesFromPath(data?.files.file.filepath);
-    const rootCid = await client.put(files);
+    const rootCid = await client.put(files, { name: fileName });
     res.statusCode = 200;
     res.json({ cid: rootCid });
     res.end();
