@@ -7,7 +7,8 @@ Contract repo: https://github.com/kitakaze-kan/contx-smart-contract
 ## Hackathon Prize Payment Tool based on WorkCRDL
 WorkCRDL's first use case, a prize payment tool for hackathon sponsors.
 ### Overview
-![My First Board - Frame 33](https://user-images.githubusercontent.com/46702100/181872083-04d9e219-e9f5-4a00-b84a-ee94c95e1771.jpg)
+![My First Board - hackathon tool (1)](https://user-images.githubusercontent.com/46702100/182294173-af7122bc-7a63-48e4-84e1-967441688cbf.jpg)
+
 
 
 ## License
